@@ -1,0 +1,16 @@
+Размещено постов:
+
+{% block main %}
+{% for item in articles %}
+    Заголовок: {{ item.title }}
+    Текст: {{ item.article_data }}
+
+    {% if article_id == id %}
+        {% for item in comments %}
+            Коммент: {{ item.data }}
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+Конец постов
+
+{% endblock %}
