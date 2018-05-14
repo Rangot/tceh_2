@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request, render_template, flash
+from flask import Flask, request, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from wtforms_alchemy import ModelForm
+from datetime import date
 
 app = Flask(__name__, template_folder='templates')
 app.config.update(
@@ -10,7 +11,7 @@ app.config.update(
     SECRET_KEY='asdfsdfssf asf dsgsdg',
 
     # Database settings:
-    SQLALCHEMY_DATABASE_URI='sqlite:///test.db',
+    SQLALCHEMY_DATABASE_URI='sqlite:///myblog.db',
     SQLALCHEMY_TRACK_MODIFICATIONS=False,
 
     WTF_CSRF_ENABLED=False
@@ -21,11 +22,13 @@ db = SQLAlchemy(app)
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(120), nullable=False)
-    article_data = db.Column(db.String(3000), nullable=False)
+    title = db.Column(db.String(120), unique=True, nullable=False)
+    article_url = db.Column(db.String(350), unique=True, nullable=False)
+    content = db.Column(db.String(3000), nullable=False)
+    date_created = db.Column(db.Date, default=date.today)
 
     def __str__(self):
-        return '<Article {}>'.format(self.article_data)
+        return '<Article {}>'.format(self.title)
 
 
 class Comment(db.Model):
@@ -38,11 +41,11 @@ class Comment(db.Model):
         index=True
     )
     article = db.relationship(Article, foreign_keys=[article_id, ])
-
-    data = db.Column(db.String(120))
+    content = db.Column(db.String(3000), nullable=False)
+    data_created = db.Column(db.Date, default=date.today)
 
     def __str__(self):
-        return '<Comment {}>'.format(self.data)
+        return '<Comment {} to Article:{}>'.format(self.title, self.article.title)
 
 
 class ArticleForm(ModelForm):
@@ -58,7 +61,7 @@ class CommentForm(ModelForm):
         ]
 
 
-@app.route('/article', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         form = ArticleForm(request.form)
@@ -67,39 +70,33 @@ def index():
             db.session.add(article)
             db.session.commit()
 
-            flash('Article created!')
+            article.article_url = str(article.id)
+            db.session.commit()
+            return redirect(url_for('index'))
         else:
-            flash('Article is not valid! Article was not created.')
-            flash(str(form.errors))
+            return render_template('errors.html', errors_text=str(form.errors))
 
-    articles = Article.query.all()
-    for article in articles:
-        art_id = article.id
-        article = Article.query.filter_by(id=art_id).first()
-        print(article.id, article.title, article)
+    all_articles = Article.query.all()
 
-    return render_template('report.txt', articles=articles)
-
-# app.jinja_env.globals.update(some_var='value')
+    return render_template('index.html', articles=all_articles, date_today=date.today())
 
 
-@app.route('/comment', methods=['GET', 'POST'])
-def comment():
+@app.route('/article/<article_url>', methods=['GET', 'POST'])
+def new_article(article_url):
+    form = CommentForm(request.form)
+    article = Article.query.filter_by(article_url=article_url).first()
     if request.method == 'POST':
-        form = CommentForm(request.form)
+        print(request.form)
         if form.validate():
             comm = Comment(**form.data)
             db.session.add(comm)
             db.session.commit()
-
-            flash('Comment created!')
         else:
-            flash('Comment is not valid! Comment was not created.')
-            flash(str(form.errors))
+            return render_template('errors.html', errors_text=str(form.errors))
 
-    articles = Article.query.all()
-    comments = Comment.query.all()
-    return render_template('report.txt', comments=comments, articles=articles)
+    all_comments = Comment.query.filter_by(article=article)
+    return render_template('article.html', comments=all_comments, article=article,
+                           date_today=date.today())
 
 
 @app.route('/delete')
@@ -114,20 +111,3 @@ if __name__ == '__main__':
     db.create_all()
 
     app.run()
-
-'''
-    a = Article(title='Article')
-    db.session.add(a)
-
-    c = Comment(article=a, data='some_data')
-
-    db.session.add(c)
-    db.session.commit()
-
-
-    all_comments = Comment.query.all()
-    for comment in all_comments:
-        print(comment.id, comment.data)
-        print(comment.id, comment.first.name, comment.first.id)
-        print()
-'''

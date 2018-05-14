@@ -1,0 +1,45 @@
+{% extends '_base_template.html' %}
+
+{% block content %}
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <img src="/static/img/blog1.jpg" width="100%" alt="A Blog logo">
+    </div>
+
+    <div class="container">
+        <form method="post">
+            <fieldset>
+                <div class="panel panel-primary panel-heading">
+                    <h2>New article</h2>
+                    <div class="panel-title">Title</div>
+                    <input title="title" type="text" class="panel-body" name="title" value="">
+                    <br>
+                    <br>
+                    <div class="panel-title">
+                        Date: <i> {{ date_today }} </i>
+                    </div>
+                    <br>
+                    <div class="panel-title">
+                        <input type="hidden"  name="article_url" value="new" size=65>
+                    </div>
+                    <br>
+                    <div class="panel-title">Content</div>
+                    <textarea title="" class="panel-body" name="content" cols="40" rows="3"></textarea><br>
+                    <input type="submit" class="btn btn-lg btn-primary" value="Submit">
+                </div>
+            </fieldset>
+        </form>
+        <br>
+        <fieldset>
+            <div class="panel panel-primary panel-heading">
+                <legend>Blog articles</legend>
+                {% for article in articles %}<br>
+                    <b>Title:</b> <a href="{{ url_for('new_article', article_url=article.article_url) }}">{{ article.title }}</a><br>
+                    <b>Date:</b> {{ article.date_created }}<br>
+                    <b>Content:</b><i> {{ article.content }}</i><br>
+                {% endfor %}<br>
+            </div>
+        </fieldset>
+    </div>
+</div>
+{% endblock %}

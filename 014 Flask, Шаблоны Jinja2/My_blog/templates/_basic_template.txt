@@ -1,3 +1,0 @@
-Articles posted:
-{% block main %}
-{% endblock %}
