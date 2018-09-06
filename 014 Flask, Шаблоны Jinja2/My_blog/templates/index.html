@@ -34,7 +34,7 @@
             <div class="panel panel-primary panel-heading">
                 <legend>Blog articles</legend>
                 {% for article in articles %}<br>
-                    <b>Title:</b> <a href="{{ url_for('new_article', article_url=article.article_url) }}">{{ article.title }}</a><br>
+                    <b>Title:</b> <a href="{{ url_for('new_article', article_url=article.article_url)}}">{{ article.title }}</a><br>
                     <b>Date:</b> {{ article.date_created }}<br>
                     <b>Content:</b><i> {{ article.content }}</i><br>
                 {% endfor %}<br>
