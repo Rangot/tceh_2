@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="course24" uuid="9d5fedd6-0734-4e87-b20a-af0ef2c4d3da">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/course24/pizza_project/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\course24\db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="shelf_rent" uuid="23e4be7e-a53d-404c-a49f-8220b65c214b">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/shelf_rent/shelf_rent/settings.py</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/shelf_rent</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="course21" uuid="fb5d2f9d-98be-4032-bb72-9b37516ed03d">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/course21/pizza_project/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\course21\db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="test_project" uuid="cb5f734d-29bf-4b1c-8211-cc0e092c4720">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/test_project/test_project/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\test_project\db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="course19" uuid="5849a887-0853-44a6-a3ff-1ff9718fb8c9">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/course19/pizza_project/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\course19\db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="course23" uuid="46aacf7a-efc9-4bcb-9a3a-8ef0498187a7">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/course23/pizza_project/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\course23\db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="course22" uuid="66e169d2-ec72-43e9-b0d1-8559f5cda814">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/course22/pizza_project/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\course22\db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="blog_engine" uuid="0e840ec3-75e8-422a-9175-4dd69fe92985">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>D:/Python_projects/blogengine/blogengine/settings.py</remarks>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\Python_projects\blogengine\db.sqlite3</jdbc-url>
+    </data-source>
+  </component>
+</project>
